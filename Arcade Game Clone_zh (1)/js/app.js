@@ -87,7 +87,7 @@ Player.prototype.render=function(){
 // 把玩家对象放进一个叫 player 的变量里面
 var allEnemies=[];
 for (var i = 0; i < 6; i++) {//随机产生6个enemy，每个enemy的y值不同，速度随机产生
-    var enemy=new Enemy(-50,Math.floor(Math.random()*3)*83+61.5); //50-78+6.5+83
+    var enemy=new Enemy(-50,Math.floor(Math.random()*3)*83+70);
     allEnemies.push(enemy); //把实例化的enemy放到allEnemies数组中
 };
 var player=new Player(202,402);
@@ -96,11 +96,13 @@ var player=new Player(202,402);
 //检测player和enemy在一个碰撞半径内是否碰撞
 Player.prototype.checkCollisions = function(){
     for(var i=0;i<allEnemies.length;i++){
-    if(Math.abs(this.x - allEnemies[i].x)<10 && Math.abs(this.y - allEnemies[i].y)<10) {
-        alert ('GOTCHA!!!');
-        this.x =202;
-        this.y =402;
-        };
+        if(this.y===allEnemies[i].y) {
+            if (Math.abs(this.x-allEnemies[i].x)<50) {   
+                alert ('GOTCHA!!!');
+                this.x=202;
+                this.y=402;  
+            }
+        }
     };
 };
 
